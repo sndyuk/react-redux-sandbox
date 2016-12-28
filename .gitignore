@@ -1,0 +1,35 @@
+### OS generated files
+.DS_Store*
+
+### Sass template
+.sass-cache/
+*.css.map
+
+### Eclipse
+.project
+.settings
+
+### JetBrains
+*.iml
+.idea/
+*.ipr
+*.iws
+/out/
+.idea_modules/
+
+### Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+### Build directories
+node_modules
+bower_components
+build
+src/public/ts/typings
+

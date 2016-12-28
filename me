@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+manual() {
+cat <<_END_
+  ./liigo <command>
+  
+  Liigo COMMANDS
+    install
+      Make your machine ready for development.
+    build [--production]
+      Build assets in 'src' directory into the deploy ready resources.
+    server [--production]
+      Run the web application on your machine.
+    gulp <command>
+      Execute gulp command. See ./gulpfile.js
+_END_
+}
+
+do_install() {
+  npm install npm@3.10.10
+  npm install $@
+}
+
+do_build() {
+  if [ "$1" == "--production" ]; then
+    NODE_ENV=production node node_modules/gulp/bin/gulp.js build
+    do_webpack --env production --config webpack.config.production.js
+  else
+    NODE_ENV=development node node_modules/gulp/bin/gulp.js build
+    do_webpack --env development --config webpack.config.development.js
+  fi
+}
+
+do_watch() {
+  if [ "$1" == "--production" ]; then
+    NODE_ENV=production node node_modules/gulp/bin/gulp.js watch &
+    do_webpack -w  --progress --env production --config webpack.config.production.js &
+  else
+    NODE_ENV=development node node_modules/gulp/bin/gulp.js watch &
+    do_webpack -w  --progress --env development --config webpack.config.development.js &
+  fi
+}
+
+do_server() {
+  do_watch $@
+  cd web
+  DEBUG=* node server.js
+}
+
+do_gulp() {
+  node node_modules/gulp/bin/gulp.js $@
+}
+
+do_webpack() {
+  node node_modules/webpack/bin/webpack.js $@
+}
+
+ROOT_DIR=$(cd "$(dirname "$0")"; pwd)
+cd $ROOT_DIR
+ARGS=("$@")
+if hash do_${ARGS[0]} 2>/dev/null; then
+  eval "do_${ARGS[0]} ${ARGS[@]:1}"
+else
+  echo "The command '${ARGS[0]}' not found."
+  manual
+  exit 1
+fi

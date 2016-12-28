@@ -1,0 +1,27 @@
+@mixin container {
+  @include clearfix;
+
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow: hidden;
+
+  @media (min-width: $breakpoint_width_4) {
+    & {
+      width: 750px;
+    }
+  }
+
+  @media (min-width: $breakpoint_width_5) {
+    & {
+      width: 970px;
+    }
+  }
+
+  @media (min-width: $breakpoint_width_6) {
+    & {
+      width: 1170px;
+    }
+  }
+}

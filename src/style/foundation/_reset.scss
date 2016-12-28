@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 62.5%;
+}
+body {
+  font-family: $font-family;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  min-width: 980px;
+  color: $color-text;
+  background-color: $color-background;
+}
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid #eee;
+  height: 0;
+}
+img {
+  vertical-align: middle;
+}
+a,
+a:hover,
+a:focus,
+a:focus {
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+}
+p {
+  margin: 0 0 16px;
+}
+ol,
+ul {
+  list-style: none;
+}
+input,
+select,
+button {
+  appearance: none;
+}
+select:focus::-ms-value {
+  background: transparent;
+}
+label {
+  cursor: pointer;
+}

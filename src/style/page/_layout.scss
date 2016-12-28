@@ -1,0 +1,36 @@
+body::before {
+  content: " ";
+  display: block;
+  width: 100%;
+  height: 5px;
+  background-color: $color-background;
+  border-bottom: 2px solid #ff982c;
+  z-index: 9999;
+}
+.content {
+  @include container;
+
+  min-height: calc(100vh - 177px);
+  position: relative;
+
+  &__main {
+    float: left;
+    width: 100%;
+    margin-left: -1 * $sidebar_width;
+    padding-left: $sidebar_width;
+    padding-right: 20px;
+    padding-bottom: 70px;
+
+    &--withoutSidebar {
+      margin-left: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &__sidebar {
+    float: left;
+    width: $sidebar_width;
+    padding: 0;
+  }
+}

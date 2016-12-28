@@ -1,0 +1,13 @@
+.header {
+  background-color: $color-background;
+  border: 1px solid transparent;
+  border-width: 0 0 1px;
+  margin-bottom: 20px;
+
+  &__container {
+    @include container;
+
+    min-height: 52px;
+    padding-top: 10px;
+  }
+}

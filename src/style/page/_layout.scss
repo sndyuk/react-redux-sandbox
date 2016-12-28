@@ -1,12 +1,3 @@
-body::before {
-  content: " ";
-  display: block;
-  width: 100%;
-  height: 5px;
-  background-color: $color-background;
-  border-bottom: 2px solid #ff982c;
-  z-index: 9999;
-}
 .content {
   @include container;
 

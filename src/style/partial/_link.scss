@@ -1,0 +1,15 @@
+.link {
+  color: #337ab7;
+  text-decoration: underline;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: thin dotted;
+  }
+}

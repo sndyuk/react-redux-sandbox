@@ -52,6 +52,7 @@ input,
 select,
 button {
   appearance: none;
+  background-color: unset;
 }
 select:focus::-ms-value {
   background: transparent;

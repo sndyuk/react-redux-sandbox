@@ -1,0 +1,178 @@
+@mixin button {
+  display: inline-block;
+  margin-bottom: 0;
+  text-align: center;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 4px;
+
+  &[disabled] {
+    cursor: not-allowed;
+    color: #ccc;
+    text-shadow: 0 0 0 #ccc;
+    border: 1px solid #999;
+    background-color: #999;
+    background-image: none;
+    filter: alpha(opacity=65);
+    opacity: 0.65;
+  }
+}
+
+@mixin buttonGray {
+  @include button;
+
+  background: linear-gradient(to bottom, #aeabab 0%, #666 100%);
+  box-shadow: 1px 2px 2px rgba(204, 204, 204, 0.75), inset 0 0 rgba(255, 255, 255, 0.75);
+  border: solid 1px #999;
+
+  &:not([disabled]):focus,
+  &:not([disabled]):hover {
+    border: solid 1px #999;
+    background-color: #747474;
+    background-image: none;
+    box-shadow: inset 0 1px rgba(105, 104, 104, 0.75);
+  }
+}
+
+@mixin buttonOrange {
+  @include button;
+
+  box-shadow: 1px 2px 2px rgba(153, 153, 153, 0.75), inset 0 0 rgba(255, 255, 255, 0.75);
+  background: linear-gradient(to bottom, #fb992e 0%, #c13c02 100%);
+  border: solid 1px #f15f01;
+
+  &:not([disabled]):focus,
+  &:not([disabled]):hover {
+    background-color: #db5b06;
+    background-image: none;
+    box-shadow: inset 0 1px rgba(214, 93, 17, 0.75);
+  }
+}
+
+@mixin buttonGreen {
+  @include button;
+
+  box-shadow: 1px 2px 2px rgba(153, 153, 153, 0.75), inset 0 0 rgba(255, 255, 255, 0.75);
+  background: linear-gradient(to bottom, #0cb0ba 0%, #08787a 100%);
+  border: solid 1px #087a7b;
+
+  &:not([disabled]):focus,
+  &:not([disabled]):hover {
+    box-shadow: none;
+    border: solid 1px #0ba1a9;
+    background-color: #0ba1a9;
+    background-image: none;
+  }
+}
+
+@mixin buttonBlue {
+  @include button;
+
+  box-shadow: 1px 2px 2px rgba(153, 153, 153, 0.75), inset 0 0 rgba(255, 255, 255, 0.75);
+  background: linear-gradient(to bottom, #30b5ff 0%, #30b5ff 100%);
+  border: solid 1px #5499db;
+
+  &:not([disabled]):focus,
+  &:not([disabled]):hover {
+    background-color: #25659f;
+    background-image: none;
+    border: 1px solid transparent;
+    box-shadow: none;
+  }
+}
+.buttonGroup {
+  margin-top: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+
+  &--vertical {
+    .buttonIcon,
+    .button {
+      display: block;
+      margin-bottom: 16px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &--horizontal {
+    .buttonIcon,
+    .button {
+      display: inline-block;
+
+      &:not(:first-child) {
+        margin-left: 176px;
+      }
+    }
+  }
+}
+
+.buttonIcon {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  color: #fff;
+
+  .button {
+    text-indent: 0.5em;
+  }
+
+  &--back,
+  &--next {
+    width: 213px;
+
+    .button {
+      width: 100%;
+    }
+  }
+
+  &--back::before {
+    content: '';
+    font-size: 18px;
+    pointer-events: none;
+    position: absolute;
+    left: calc(50% - 1.8em);
+    top: 17px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../image/icon-chevron-left.png) 0 no-repeat;
+  }
+
+  &--next::before {
+    content: '';
+    font-size: 18px;
+    pointer-events: none;
+    position: absolute;
+    left: calc(50% - 1.8em);
+    top: 17px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../image/icon-chevron-right.png) 0 no-repeat;
+  }
+}
+
+.button {
+  &--back {
+    @include buttonGray;
+
+    width: 213px;
+    max-width: 320px;
+    padding: 10px 16px;
+    font-size: 18px;
+  }
+
+  &--next {
+    @include buttonOrange;
+
+    width: 213px;
+    max-width: 320px;
+    padding: 10px 16px;
+    font-size: 18px;
+  }
+}

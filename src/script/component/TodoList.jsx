@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react'
-import Todo from './Todo'
+import React, { PropTypes } from 'react';
+import Todo from './Todo';
 
 const TodoList = ({ todos, onTodoClick }) => (
-  <ul>
+  <div className="todo__list panelList">
     {todos.map(todo =>
       <Todo
         key={todo.id}
@@ -10,8 +10,8 @@ const TodoList = ({ todos, onTodoClick }) => (
         onClick={() => onTodoClick(todo.id)}
       />
     )}
-  </ul>
-)
+  </div>
+);
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
@@ -20,6 +20,6 @@ TodoList.propTypes = {
     text: PropTypes.string.isRequired
   }).isRequired).isRequired,
   onTodoClick: PropTypes.func.isRequired
-}
+};
 
-export default TodoList
+export default TodoList;

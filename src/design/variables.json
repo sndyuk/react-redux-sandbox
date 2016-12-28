@@ -16,13 +16,35 @@
       "value": "{!WHITE_LILAC}",
       "type": "color", "category": "background"
     },
-    
+    "$color-border": {
+      "value": "{!GEYSER}",
+      "type": "color", "category": "border"
+    },
+
     "$color-text-topic": {
       "value": "{!WHITE}",
       "type": "color", "category": "text"
     },
     "$color-background-topic": {
       "value": "{!CURIOUS_BLUE}",
+      "type": "color", "category": "background"
+    },
+
+    "$color-text-warning": {
+      "value": "{!BISCAY}",
+      "type": "color", "category": "text"
+    },
+    "$color-background-warning": {
+      "value": "{!KOROMIKO}",
+      "type": "color", "category": "background"
+    },
+
+    "$color-text-disabled": {
+      "value": "{!KASHMIR_BLUE}",
+      "type": "color", "category": "text"
+    },
+    "$color-background-disabled": {
+      "value": "{!GEYSER}",
       "type": "color", "category": "background"
     }
   }

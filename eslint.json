@@ -1,11 +1,14 @@
 {
-  "rules": {},
+  "rules": {
+    "comma-dangle": ["error", "never"]
+  },
   "env": {
     "es6": true,
     "browser": true
   },
   "parserOptions": {
     "sourceType": "module",
+    "ecmaVersion": "6",
     "ecmaFeatures": {
       "jsx": true,
       "experimentalObjectRestSpread": true,
@@ -13,10 +16,6 @@
     }
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
-  "plugins": [
-    "react"
+    "airbnb"
   ]
 }

@@ -1,0 +1,167 @@
+@mixin input {
+  display: inline-block;
+  width: 100%;
+  height: 34px;
+  padding: 0 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 0 2px rgba(226, 229, 230, 1);
+
+  @media (max-width: $breakpoint_width_3) {
+    & {
+      padding: 0 9px;
+    }
+  }
+
+  &:focus {
+    border-color: #70c4e0;
+    outline: 0;
+    box-shadow: inset 0 0 2px rgba(112, 196, 224, 1);
+  }
+
+  &:-ms-input-placeholder,
+  &:-webkit-input-placeholder,
+  &:-moz-placeholder {
+    color: #999;
+    opacity: 1;
+  }
+}
+.formItem {
+  @include clearfix;
+
+  /*! To make sure remove margin. If you have a space, or tab around the elements, you would see margin. */
+  font-size: 0;
+
+  &__input {
+    @include input;
+
+    &--zip {
+      width: 145px;
+    }
+
+    &--tel1 {
+      width: calc(34% - 29px);
+    }
+
+    &--tel2 {
+      width: 33%;
+    }
+
+    &--tel3 {
+      width: 33%;
+    }
+
+    &--name {
+      width: calc(100% - 22px);
+    }
+
+    &--error {
+      background-color: $color-background-warning;
+    }
+  }
+
+  &__select {
+    position: relative;
+    display: inline-block;
+    pointer-events: none;
+    height: 34px;
+    width: 100%;
+
+    &__form {
+      @include input;
+
+      padding-left: 9px;
+      pointer-events: auto;
+
+      option[value=""][disabled],
+      &:required:invalid {
+        color: #999;
+        opacity: 1;
+      }
+
+      &--error {
+        background-color: $color-background-warning;
+      }
+    }
+
+    &--year {
+      width: calc(56% - 66px);
+    }
+
+    &--month {
+      width: 22%;
+    }
+
+    &--day {
+      width: 22%;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 32px;
+      height: 100%;
+      border: 1px solid #ccc;
+      border-radius: 0 4px 4px 0;
+      background-size: 100%;
+      background-image: linear-gradient(#fff, #f2f3f4);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      right: 8px;
+      bottom: 0;
+      margin: auto 0;
+      width: 0;
+      height: 0;
+      border-top: 12px solid $color-border;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-radius: 2px;
+    }
+
+    @media (max-width: $breakpoint_width_3) {
+      &::before {
+        width: 23px;
+      }
+
+      &::after {
+        right: 5px;
+        border-top: 9px solid $color-border;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-radius: 1px;
+      }
+    }
+  }
+
+  /*! Use the button with '.button' */
+  &__button {
+    font-size: 14px !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    margin-left: 4px !important;
+    vertical-align: baseline !important;
+  }
+
+  &__label {
+    font-size: 14px;
+    padding: 0 4px;
+    vertical-align: baseline;
+  }
+
+  &__errorMessage {
+    display: block;
+    color: $color-text-warning;
+    font-size: 11px;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,34 @@
+@mixin panel($list: false) {
+  @include clearfix;
+
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  margin-bottom: 20px;
+
+  @if $list == true {
+    &__item {
+      border-width: 0;
+      border-bottom: 1px solid $color-border;
+      border-radius: 0;
+      margin-bottom: 0;
+    }
+
+    & > *:first-child + &__item,
+    &__item:first-child {
+      border-top: 0;
+      border-top-right-radius: 3px;
+      border-top-left-radius: 3px;
+    }
+
+    &__item:last-child {
+      border-bottom: 0;
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+  }
+}
+
+.panelList {
+  @include panel(true);
+}

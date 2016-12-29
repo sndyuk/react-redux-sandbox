@@ -26,10 +26,11 @@ const pack = {
       {
         enforce: 'pre',
         test: /\.js(x?)$/,
+        include: /src\/script/,
         loader: 'eslint-loader',
         options: {
           fix: false, // Don't set true. I will broke your source code!
-          configFile: 'eslint.json'
+          configFile: path.resolve(__dirname, 'eslint.json')
         }
       },
       {
@@ -50,7 +51,7 @@ const pack = {
   },
   plugins: [
     new StyleLintPlugin({
-      configFile: 'stylelint.js',
+      configFile: path.resolve(__dirname, 'stylelint.js'),
       files: ['src/style/**/*.s?(a|c)ss']
     }),
     new ExtractTextPlugin({ filename: 'style/[name].css', allChunks: true }),

@@ -3,13 +3,30 @@ const
   path = require('path'),
   logger = require('morgan'),
   cookieParser = require('cookie-parser'),
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  webpack = require('webpack');
 
 const
   app = express(),
   router = express.Router();
 
-app.set('views', path.join(__dirname, '../src/view'));
+const production = process.env.NODE_ENV === 'production';
+
+//-- Hot reloading settings
+const webpackConfig = require(production ? '../webpack.config.production' : '../webpack.config.development');
+webpackConfig.entry.app.push('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true');
+webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+webpackConfig.plugins.push(new webpack.NoErrorsPlugin());
+const webpackCompiler = webpack(webpackConfig);
+app.use(require("webpack-dev-middleware")(webpackCompiler, {
+  noInfo: true, publicPath: webpackConfig.output.publicPath
+}));
+app.use(require("webpack-hot-middleware")(webpackCompiler, {
+  log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
+}));
+
+
+app.set('views', path.resolve(__dirname, '../src/view'));
 app.set('view engine', 'pug');
 app.locals.pretty = true;
 

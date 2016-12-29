@@ -11,6 +11,7 @@ cat <<_END_
       Build assets in 'src' directory into the deploy ready resources.
     server [--production]
       Run the web application on your machine.
+      --production: Use production build.
     gulp <command>
       Execute gulp command. See ./gulpfile.js
 _END_
@@ -36,15 +37,19 @@ do_watch() {
     NODE_ENV=production node node_modules/gulp/bin/gulp.js watch &
     do_webpack -w  --progress --env production --config webpack.config.production.js &
   else
-    NODE_ENV=development node node_modules/gulp/bin/gulp.js watch &
+    DEBUG=* node node_modules/gulp/bin/gulp.js watch &
     do_webpack -w  --progress --env development --config webpack.config.development.js &
   fi
 }
 
 do_server() {
-  do_watch $@
+  DEBUG=* node node_modules/gulp/bin/gulp.js watch &
   cd web
-  DEBUG=* node server.js
+  if [ "$1" == "--production" ]; then
+    NODE_ENV=production node server.js
+  else
+    DEBUG=* node server.js
+  fi
 }
 
 do_gulp() {

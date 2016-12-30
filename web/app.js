@@ -12,8 +12,9 @@ const
 
 const production = process.env.NODE_ENV === 'production';
 
+const webpackConfig = require(production ? '../webpack.config.production' : '../webpack.config.prerendering');
+
 //-- Hot reloading settings
-const webpackConfig = require(production ? '../webpack.config.production' : '../webpack.config.development');
 webpackConfig.entry.app.push('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true');
 webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 webpackConfig.plugins.push(new webpack.NoErrorsPlugin());
@@ -24,7 +25,6 @@ app.use(require("webpack-dev-middleware")(webpackCompiler, {
 app.use(require("webpack-hot-middleware")(webpackCompiler, {
   log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
 }));
-
 
 app.set('views', path.resolve(__dirname, '../src/view'));
 app.set('view engine', 'pug');

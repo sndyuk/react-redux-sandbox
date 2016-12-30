@@ -1,4 +1,4 @@
-	{
+{
   "name": "@sndyuk/spa-react-redux-pug-scss-typescript",
   "version": "0.1.0",
   "description": "Initial sets of SPA application using React, Redux, Pug, SCSS, and Typescript",
@@ -23,6 +23,7 @@
     "redux-thunk": "*",
     "classnames": "*",
     "isomorphic-fetch": "*",
+    "immutable": "*",
     "webpack-dev-middleware": "*",
     "webpack-hot-middleware": "*",
 
@@ -75,6 +76,7 @@
     "file-loader": "*",
     "postcss-sprites": "*",
     "postcss-inline-svg": "*",
-    "autoprefixer": "*"
+    "autoprefixer": "*",
+    "prerender-spa-plugin": "*"
   }
 }

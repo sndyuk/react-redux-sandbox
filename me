@@ -1,72 +1,106 @@
-#!/usr/bin/env bash
+#!/usr/bin/env node
 
-manual() {
-cat <<_END_
+'use strict';
+
+const colors = require('colors');
+
+function manual() {
+console.log(`
   ./me <command>
-  
-  me COMMANDS
-    install
-      Make your machine ready for development.
-    build [--production]
-      Build assets in 'src' directory into the deploy ready resources.
-    server [--production]
-      Run the web application on your machine.
-      --production: Use production build.
-    gulp <command>
-      Execute gulp command. See ./gulpfile.js
-_END_
+
+, or you may see debug log:
+
+  DEBUG="*,-not_this" ./me <command>
+
+
+./me COMMANDS
+  install
+    Make your machine ready for development.
+  build [--production]
+    Build assets in 'src' directory into the deploy ready resources.
+  server [--production]
+    Run the web application on your machine.
+    --production: Use production build.
+  gulp <command>
+    Execute gulp command. See ./gulpfile.js
+`.green);
 }
 
-do_install() {
-  npm install npm@3.10.10
-  npm install $@
+if (!process.env.DEBUG) {
+  process.env.DEBUG="*,-babel,-eslint*"
 }
 
-do_build() {
-  if [ "$1" == "--production" ]; then
-    NODE_ENV=production node node_modules/gulp/bin/gulp.js build
-    do_webpack --env production --config webpack.config.production.js
-  else
-    NODE_ENV=development node node_modules/gulp/bin/gulp.js build
-    do_webpack --env development --config webpack.config.development.js
-  fi
+const args = process.argv.slice(2);
+const isProduction = typeof args.find(opt => opt === '--production') !== 'undefined';
+if (isProduction || process.env.NODE_ENV === 'production') {
+  process.env.NODE_ENV = 'production';
+} else {
+  process.env.NODE_ENV = 'development';
 }
 
-do_watch() {
-  if [ "$1" == "--production" ]; then
-    NODE_ENV=production node node_modules/gulp/bin/gulp.js watch &
-    do_webpack -w  --progress --env production --config webpack.config.production.js &
-  else
-    DEBUG=* node node_modules/gulp/bin/gulp.js watch &
-    do_webpack -w  --progress --env development --config webpack.config.development.js &
-  fi
+const commands = {
+  install: (args = []) => {
+    (function() {
+      require('child_process').execSync('npm install', {stdio: 'inherit'});
+    })();
+  },
+  build: (args = []) => {
+    if(isProduction) {
+      commands.gulp(['build']);
+      commands.webpack(['--env', 'production', '--config', 'webpack.config.production.js']);
+    } else {
+      commands.gulp(['build']);
+      commands.webpack(['--env', 'development', '--config', 'webpack.config.development.js']);
+    }
+  },
+  watch: (args = []) => {
+    commands.gulp(['watch'], false);
+    if(isProduction) {
+      commands.webpack(['-w', '--progress', '--env', 'production', '--config', 'webpack.config.production.js'], false);
+    } else {
+      commands.webpack(['-w', '--progress', '--env', 'development', '--config', 'webpack.config.development.js'], false);
+    }
+  },
+  server: (args = []) => {
+    commands.gulp(['watch'], false);
+    run_as_myself('./web/server.js', args);
+  },
+  webpack: (args = [], sync = true) => {
+    if (sync) {
+      require('child_process').execFileSync('./node_modules/webpack/bin/webpack.js', args, {stdio: 'inherit'});
+    } else {
+      run_as_myself('./node_modules/webpack/bin/webpack.js', args);
+    }
+  },
+  gulp: (args = [], sync = true) => {
+    if (sync) {
+      require('child_process').execFileSync('./node_modules/gulp/bin/gulp.js', args, {stdio: 'inherit'});
+    } else {
+      run_as_myself('./node_modules/gulp/bin/gulp', args);
+    } 
+  }
+};
+
+// Run file, written in Node.js, as running on the same process.
+const run_as_myself = (fileName, args = []) => {
+  const originalArgv = process.argv; 
+  try {
+    (function() {
+      process.argv = [process.argv[0], process.argv[1], ...args];
+      require(fileName);
+    })();
+  } finally {
+    process.argv = originalArgv;
+  }
 }
 
-do_server() {
-  DEBUG=* node node_modules/gulp/bin/gulp.js watch &
-  cd web
-  if [ "$1" == "--production" ]; then
-    NODE_ENV=production node server.js
-  else
-    DEBUG=* node server.js
-  fi
+if (typeof commands[args[0]] !== 'function') {
+  manual();
+  process.exit(1);
+} else {
+  if (args.length >= 2) {
+    commands[args[0]](args.slice(1));
+  } else {
+    commands[args[0]]();
+  }
 }
-
-do_gulp() {
-  node node_modules/gulp/bin/gulp.js $@
-}
-
-do_webpack() {
-  node node_modules/webpack/bin/webpack.js $@
-}
-
-ROOT_DIR=$(cd "$(dirname "$0")"; pwd)
-cd $ROOT_DIR
-ARGS=("$@")
-if hash do_${ARGS[0]} 2>/dev/null; then
-  eval "do_${ARGS[0]} ${ARGS[@]:1}"
-else
-  echo "The command '${ARGS[0]}' not found."
-  manual
-  exit 1
-fi

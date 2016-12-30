@@ -17,7 +17,7 @@ gulp.task('pug', function() {
   .pipe(gulp.dest('build'));
 });
 
-gulp.task('theo-sass', function() {
+gulp.task('theo-sass', ['lint-theo'], function() {
   return gulp.src('src/design/variables.json')
   .pipe(plumber())
   .pipe(theo.plugins.transform('web'))
@@ -32,7 +32,7 @@ gulp.task('image', function() {
     .pipe(gulp.dest('build/images'));
 });
 
-gulp.task('lint-json', function() {
+gulp.task('lint-theo', function() {
   return gulp.src('src/design/**/*.json')
     .pipe(plumber())
     .pipe(jshint())
@@ -43,10 +43,10 @@ gulp.task('lint-json', function() {
 
 gulp.task('clean', del.bind(null, ['build']));
 
-gulp.task('build', sequence('clean', 'lint-json', 'theo-sass', ['pug', 'image']));
+gulp.task('build', sequence('clean', 'lint-theo', 'theo-sass', ['pug', 'image']));
 
 gulp.task('watch', function() {
-  gulp.watch('src/design/**/*.json', ['lint-json', 'theo-sass']);
+  gulp.watch('src/design/**/*.json', ['theo-sass']);
   gulp.watch('src/view/**/*.pug', ['pug']);
   gulp.watch('src/image/**/*', ['image']);
 });

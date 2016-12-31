@@ -6,6 +6,10 @@ html
     meta(name="format-detection" content="telephone=no")/
     title Todo
     link(rel="stylesheet" href="style/app.css")/
+    script.
+      window.preloadedState = {
+        todos: [{ id: 1, completed: false, text: '明日お米を買う。', detail: 'Japan Centerに行くついでに買う。' }] 
+      };
   body
     .header
     .content

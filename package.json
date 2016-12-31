@@ -24,6 +24,7 @@
     "classnames": "*",
     "isomorphic-fetch": "*",
     "immutable": "*",
+    "react-immutable-proptypes": "*",
     "webpack-dev-middleware": "*",
     "webpack-hot-middleware": "*",
 

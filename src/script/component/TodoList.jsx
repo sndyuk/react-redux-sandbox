@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import Todo from './Todo';
 
 const TodoList = ({ todos, onTodoClick }) => (
@@ -6,7 +8,7 @@ const TodoList = ({ todos, onTodoClick }) => (
     {todos.map(todo =>
       <Todo
         key={todo.id}
-        {...todo}
+        todo={todo}
         onClick={() => onTodoClick(todo.id)}
       />
     )}
@@ -14,11 +16,11 @@ const TodoList = ({ todos, onTodoClick }) => (
 );
 
 TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape({
+  todos: ImmutablePropTypes.contains({
     id: PropTypes.number.isRequired,
     completed: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired
-  }).isRequired).isRequired,
+  }).isRequired,
   onTodoClick: PropTypes.func.isRequired
 };
 

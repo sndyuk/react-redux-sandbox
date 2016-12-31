@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/sndyuk/spa-react-redux-pug-scss-typescript.git"
   },
+  "scripts": {
+    "start": "node ./me build && node ./me server"
+  },
   "dependencies": {
     "react": "*",
     "react-dom": "*",
@@ -52,7 +55,6 @@
     "jshint": "*",
     "gulp-jshint": "*",
     "jshint-stylish": "*",
-    "colors": "*",
 
     "webpack": "beta",
     "babel-core": "*",

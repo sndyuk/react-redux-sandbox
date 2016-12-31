@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../duck/todoWidget';
+import { addTodoSync } from '../duck/todoWidget';
 
 const AddTodo = ({ dispatch, lastTodoId }) => {
   let input;
@@ -13,7 +13,7 @@ const AddTodo = ({ dispatch, lastTodoId }) => {
           if (!input.value.trim()) {
             return;
           }
-          dispatch(addTodo(input.value, lastTodoId));
+          dispatch(addTodoSync(lastTodoId, input.value));
           input.value = '';
         }}
       >

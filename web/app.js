@@ -1,7 +1,7 @@
 const
   express = require('express'),
   path = require('path'),
-  logger = require('morgan'),
+  morgan = require('morgan'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
   webpack = require('webpack');
@@ -38,7 +38,14 @@ app.get('/favicon.ico', function(req, res) {
   res.sendStatus(200);
 });
 
-app.use(logger('dev'));
+morgan.token('body', function (req, res) {
+  if (req.method.toUpperCase() === 'GET') {
+    return;
+  }
+  return '\n' + JSON.stringify(req.body, null, 2);
+});
+
+app.use(morgan(':method :url :status :response-time ms - :res[content-length] :body'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -70,7 +77,6 @@ app.use(function(err, req, res, next) {
     res.send('{"data": "' + err.message + '"}');
   } else {
     res.render('error', {
-      message: err.message,
       error: err
     });
   }

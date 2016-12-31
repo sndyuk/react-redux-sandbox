@@ -6,7 +6,7 @@ const AddTodo = ({ dispatch, lastTodoId }) => {
   let input;
 
   return (
-    <div className="todo">
+    <div className="c-addTodo">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -19,13 +19,13 @@ const AddTodo = ({ dispatch, lastTodoId }) => {
       >
         <div className="formItem">
           <input
-            className="todo__input formItem__input"
+            className="c-addTodo__input formItem__input"
             ref={(node) => {
               input = node;
             }}
           />
           <button
-            className="todo__enterButton button button--next formItem__button"
+            className="c-addTodo__enterButton button button--next formItem__button"
             type="submit"
           >
             Add Todo

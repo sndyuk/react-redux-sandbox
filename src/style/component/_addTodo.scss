@@ -1,0 +1,9 @@
+.c-addTodo {
+  &__input {
+    width: calc(100% - 135px);
+  }
+
+  &__enterButton {
+    width: 130px;
+  }
+}

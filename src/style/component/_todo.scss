@@ -1,0 +1,24 @@
+.c-todo {
+  width: 100%;
+  display: block;
+  padding: 1rem;
+  font-size: 1.8rem;
+  text-align: left;
+  word-break: break-all;
+
+  &__detail {
+    border-top: 1px solid $color-border;
+    font-size: 1.4rem;
+    padding-top: 1rem;
+
+    &__empty {
+      display: none;
+    }
+  }
+
+  &--completed {
+    color: $color-text-disabled;
+    background-color: $color-background-disabled;
+    text-decoration: line-through;
+  }
+}

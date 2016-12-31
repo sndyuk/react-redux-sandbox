@@ -1,0 +1,6 @@
+.c-todoList {
+  @include panel(true);
+
+  margin: 10px 0;
+  border-color: $color-border;
+}

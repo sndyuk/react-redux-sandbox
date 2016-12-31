@@ -11,6 +11,9 @@
 @import 'partial/container';
 @import 'partial/header';
 @import 'partial/badge';
+// Components
+@import 'component/addTodo';
+@import 'component/todo';
+@import 'component/todoList';
 // Pages
-@import 'page/layout';
-@import 'page/todo';
+@import 'page/index';

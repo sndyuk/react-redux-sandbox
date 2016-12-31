@@ -1,8 +1,8 @@
 import React from 'react';
 import FilterLink from '../container/FilterLink';
 
-const Footer = () => (
-  <p>
+const FilterLinks = () => (
+  <p className="c-filterLinks">
     Show:
     {' '}
     <FilterLink filter="SHOW_ALL">
@@ -19,4 +19,4 @@ const Footer = () => (
   </p>
 );
 
-export default Footer;
+export default FilterLinks;

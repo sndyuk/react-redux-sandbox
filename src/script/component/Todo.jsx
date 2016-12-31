@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 
-const Todo = ({ onClick, completed, todo }) => (
+const Todo = ({ onClick, todo }) => (
   <button
-    className={`todo__list__item panelList__item ${completed ? 'todo__list__item--completed' : 'none'}`}
+    className={`c-todo${todo.completed ? ' c-todo--completed' : ''}`}
     onClick={onClick}
   >
     {todo.text}
     <div
-      className={'todo__list__item__detail'}
+      className={`c-todo__detail${todo.detail ? '' : ' c-todo__detail--empty'}`}
     >
       {todo.detail}
     </div>
@@ -16,7 +16,6 @@ const Todo = ({ onClick, completed, todo }) => (
 
 Todo.propTypes = {
   onClick: PropTypes.func.isRequired,
-  completed: PropTypes.bool.isRequired,
   todo: PropTypes.shape({
     id: PropTypes.number.isRequired,
     completed: PropTypes.bool.isRequired,

@@ -11,12 +11,6 @@
     padding-left: $sidebar_width;
     padding-right: 20px;
     padding-bottom: 70px;
-
-    &--withoutSidebar {
-      margin-left: 0;
-      padding-left: 0;
-      padding-right: 0;
-    }
   }
 
   &__sidebar {

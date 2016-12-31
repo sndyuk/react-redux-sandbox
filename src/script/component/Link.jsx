@@ -7,6 +7,7 @@ const Link = ({ active, children, onClick }) => {
 
   return (
     <button
+      className="c-link link"
       onClick={(e) => {
         e.preventDefault();
         onClick();

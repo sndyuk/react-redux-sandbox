@@ -4,23 +4,19 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Todo from './Todo';
 
 const TodoList = ({ todos, onTodoClick }) => (
-  <div className="todo__list panelList">
-    {todos.map(todo =>
+  <div className="c-todoList">
+    {todos.map(todo => (
       <Todo
         key={todo.id}
         todo={todo}
         onClick={() => onTodoClick(todo.id)}
-      />
+      />)
     )}
   </div>
 );
 
 TodoList.propTypes = {
-  todos: ImmutablePropTypes.contains({
-    id: PropTypes.number.isRequired,
-    completed: PropTypes.bool.isRequired,
-    text: PropTypes.string.isRequired
-  }).isRequired,
+  todos: ImmutablePropTypes.isRequired,
   onTodoClick: PropTypes.func.isRequired
 };
 

@@ -2,8 +2,6 @@
 
 'use strict';
 
-const colors = require('colors');
-
 function manual() {
 console.log(`
   ./me <command>
@@ -23,7 +21,7 @@ console.log(`
     --production: Use production build.
   gulp <command>
     Execute gulp command. See ./gulpfile.js
-`.green);
+`);
 }
 
 if (!process.env.DEBUG) {

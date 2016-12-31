@@ -52,6 +52,7 @@
     "jshint": "*",
     "gulp-jshint": "*",
     "jshint-stylish": "*",
+    "colors": "*",
 
     "webpack": "beta",
     "babel-core": "*",

@@ -4,7 +4,9 @@ const
 
 pack.devtool = 'source-map';
 pack.performance = {
-  hints: false
+  hints: 'warning',
+  maxEntrypointSize: 1500000,
+  maxAssetSize: 1500000
 }
 
 module.exports = pack;

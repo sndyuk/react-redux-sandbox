@@ -30,6 +30,7 @@
     "react-immutable-proptypes": "*",
     "webpack-dev-middleware": "*",
     "webpack-hot-middleware": "*",
+    "compression-webpack-plugin": "*",
 
     "body-parser": "~1.15",
     "cookie-parser": "~1.4",
@@ -52,11 +53,14 @@
     "gulp-sequence": "~0.4",
     "gulp-rename": "~1.2",
     "gulp-pug": "~3.2",
+    "gulp-yaml-data": "*",
+    "gulp-data": "*",
     "jshint": "*",
     "gulp-jshint": "*",
     "jshint-stylish": "*",
 
     "webpack": "beta",
+    "webpack-visualizer-plugin": "*",
     "babel-core": "*",
     "babel-loader": "*",
     "babel-polyfill": "*",

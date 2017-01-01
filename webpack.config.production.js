@@ -5,7 +5,6 @@ const
   CompressionPlugin = require('compression-webpack-plugin'),
   Visualizer = require('webpack-visualizer-plugin');
 
-pack.plugins.push(new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('production') }}));
 pack.plugins.push(new LicenseWebpackPlugin({ pattern: /^(MIT|ISC|BSD.*)$/ }));
 pack.plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true, compress: true, comments: false }));
 pack.plugins.push(new webpack.optimize.AggressiveMergingPlugin());

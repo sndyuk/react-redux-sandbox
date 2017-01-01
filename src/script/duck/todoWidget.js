@@ -68,8 +68,7 @@ export const addTodoSync = (lastTodoId, text) => (
       'Content-Type': 'application/json'
     });
 
-    // FIXME extract the end-point.
-    return fetch('/api/add_todo', {
+    return fetch(`${config.api.main}/add_todo`, { // eslint-disable-line no-undef
       method: 'POST',
       headers,
       body: JSON.stringify({

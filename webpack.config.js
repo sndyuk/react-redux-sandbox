@@ -2,7 +2,8 @@ const
   webpack = require('webpack'),
   path = require('path'),
   StyleLintPlugin = require('stylelint-webpack-plugin'),
-  ExtractTextPlugin = require('extract-text-webpack-plugin');
+  ExtractTextPlugin = require('extract-text-webpack-plugin')
+  config = require('./config');
 
 const pack = {
   context: __dirname,
@@ -50,6 +51,10 @@ const pack = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': { 'NODE_ENV': JSON.stringify('production') },
+      'config': config.wrapStringForJs()
+    }),
     new StyleLintPlugin({
       configFile: path.resolve(__dirname, 'stylelint.js'),
       files: ['src/style/**/*.s?(a|c)ss']

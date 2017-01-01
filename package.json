@@ -2,15 +2,15 @@
   "name": "@sndyuk/spa-react-redux-pug-scss-typescript",
   "version": "0.1.0",
   "description": "Initial sets of SPA application using React, Redux, Pug, SCSS, and Typescript",
-  "homepage": "https://github.com/sndyuk/spa-react-redux-pug-scss-typescript",
+  "homepage": "https://github.com/sndyuk/react-redux-sandbox",
   "bugs": {
-    "url": "https://github.com/sndyuk/spa-react-redux-pug-scss-typescript/issues"
+    "url": "https://github.com/sndyuk/react-redux-sandbox/issues"
   },
   "license": "MIT",
   "author": "sndyuk",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sndyuk/spa-react-redux-pug-scss-typescript.git"
+    "url": "git+https://github.com/sndyuk/react-redux-sandbox.git"
   },
   "scripts": {
     "start": "node ./me build && node ./me server"
@@ -28,20 +28,9 @@
     "isomorphic-fetch": "*",
     "immutable": "*",
     "react-immutable-proptypes": "*",
-    "webpack-dev-middleware": "*",
-    "webpack-hot-middleware": "*",
-    "compression-webpack-plugin": "*",
 
-    "body-parser": "~1.15",
-    "cookie-parser": "~1.4",
-    "debug": "~2.5",
-    "express": "~4.14",
-    "pug": "2.0.0-beta6",
-    "morgan": "~1.7",
-    "lodash": "*",
     "chai": "*",
-    "mocha": "*",
-    "redux-devtools": "*"
+    "mocha": "*"
   },
   "devDependencies": {
     "del": "~2.2",
@@ -53,14 +42,24 @@
     "gulp-sequence": "~0.4",
     "gulp-rename": "~1.2",
     "gulp-pug": "~3.2",
-    "gulp-yaml-data": "*",
-    "gulp-data": "*",
     "jshint": "*",
     "gulp-jshint": "*",
     "jshint-stylish": "*",
+    "body-parser": "~1.15",
+    "cookie-parser": "~1.4",
+    "debug": "~2.5",
+    "express": "~4.14",
+    "pug": "2.0.0-beta6",
+    "morgan": "~1.7",
+    "lodash": "*",
+
+    "webpack-dev-middleware": "*",
+    "webpack-hot-middleware": "*",
+    "redux-devtools": "*",
 
     "webpack": "beta",
     "webpack-visualizer-plugin": "*",
+    "compression-webpack-plugin": "*",
     "babel-core": "*",
     "babel-loader": "*",
     "babel-polyfill": "*",

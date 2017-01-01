@@ -5,7 +5,7 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")/
     meta(name="format-detection" content="telephone=no")/
     title Todo
-    link(rel="stylesheet" href="style/app.css")/
+    link(rel="stylesheet" href=cdn_endpoint + "/style/app.css")/
     script.
       window.preloadedState = {
         todos: [{ id: 1, permanentId: 1, completed: false, text: '明日お米を買う。', detail: 'Japan Centerに行くついでに買う。' }] 
@@ -15,5 +15,5 @@ html
     .content
       div(id="root")
 
-    script(src="script/vendor.js")
-    script(src="script/app.js")
+    script(src=cdn_endpoint + "/script/vendor.js")
+    script(src=cdn_endpoint + "/script/app.js")

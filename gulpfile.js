@@ -7,13 +7,23 @@ const
   rename = require('gulp-rename'),
   theo = require('theo'),
   sequence = require('gulp-sequence'),
-  jshint = require('gulp-jshint');
+  jshint = require('gulp-jshint'),
+  config = require('./config');
+
+
+const production = typeof process.argv.find(opt => opt === '--production') !== 'undefined'
 
 gulp.task('pug', function() {
   return gulp.src('src/view/*.pug')
   .pipe(plumber())
   .pipe(pug({
-  }))
+    pretty: !production,
+    debug: false,
+    compileDebug: !production,
+    locals: {
+      cdn_endpoint: config.cdn.uiResource
+    }
+   }))
   .pipe(gulp.dest('build'));
 });
 

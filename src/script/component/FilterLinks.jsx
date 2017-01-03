@@ -2,7 +2,7 @@ import React from 'react';
 import FilterLink from '../container/FilterLink';
 
 const FilterLinks = () => (
-  <p className="c-filterLinks">
+  <p className="c-filterLinkList">
     Show:
     {' '}
     <FilterLink filter="SHOW_ALL">

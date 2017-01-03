@@ -2,24 +2,18 @@ import { List } from 'immutable';
 
 export const SHOW_ALL = 'SHOW_ALL';
 
-
-export const Todo = (id, text, detail) => ({
+export const Todo = (id, text, detail, sync, lastSyncRequestTime, completed) => ({
   id,
   text,
-  detail
+  detail,
+  sync,
+  completed
 });
 
-const State = ({ todos = [], visibilityFilter = SHOW_ALL }) => {
-  let todoList;
-  if (todos instanceof Array) {
-    todoList = List(todos);
-  } else {
-    throw new Error('Argument "todos" must be an array or Immutable.List.');
-  }
-  return {
-    todos: todoList,
-    visibilityFilter
-  };
-};
+const State = ({ todos = [], visibilityFilter = SHOW_ALL, historyTag = [] }) => ({
+  todos: List(todos),
+  visibilityFilter,
+  historyTag: List(historyTag)
+});
 
 export default State;

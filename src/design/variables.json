@@ -30,6 +30,15 @@
       "type": "color", "category": "background"
     },
 
+    "$color-text-badge": {
+      "value": "{!WHITE}",
+      "type": "color", "category": "text"
+    },
+    "$color-background-badge": {
+      "value": "{!PICKLED_BLUEWOOD}",
+      "type": "color", "category": "background"
+    },
+
     "$color-text-warning": {
       "value": "{!BISCAY}",
       "type": "color", "category": "text"

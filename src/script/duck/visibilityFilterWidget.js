@@ -1,7 +1,5 @@
 import { SHOW_ALL } from '../state';
-
-// Actions
-const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
+import { SET_VISIBILITY_FILTER } from './action';
 
 // Reducer
 export default function visibilityFilter(state = SHOW_ALL, action) {

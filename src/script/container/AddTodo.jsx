@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodoSync } from '../duck/todoWidget';
+import { addTodoRequest } from '../duck/todoWidget';
 
-const AddTodo = ({ dispatch, lastTodoId }) => {
+const AddTodo = ({ dispatch }) => {
   let input;
 
   return (
@@ -13,7 +13,7 @@ const AddTodo = ({ dispatch, lastTodoId }) => {
           if (!input.value.trim()) {
             return;
           }
-          dispatch(addTodoSync(lastTodoId, input.value));
+          dispatch(addTodoRequest(input.value));
           input.value = '';
         }}
       >
@@ -36,14 +36,8 @@ const AddTodo = ({ dispatch, lastTodoId }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  lastTodoId: state.todos.isEmpty() ? 0 : state.todos.last().id
-});
-
-
 AddTodo.propTypes = {
-  dispatch: React.PropTypes.node.isRequired,
-  lastTodoId: React.PropTypes.number.isRequired
+  dispatch: React.PropTypes.node.isRequired
 };
 
-export default connect(mapStateToProps)(AddTodo);
+export default connect()(AddTodo);

@@ -7,6 +7,9 @@ const config = {
   api: {
     main: 'http://localhost:3000/api'
   },
+  history: {
+    max: 10
+  }
 }
 
 
@@ -15,8 +18,11 @@ const _wrapStringForJs = (config) => {
   if (typeof config === 'undefined') return;
   const copy = {};
   Object.keys(config).forEach((key) => {
-    if (typeof config[key] === 'string') {
+    const type = typeof config[key];
+    if (type === 'string') {
       copy[key] = JSON.stringify(config[key]);
+    } else if (type === 'number' || type === 'boolean') {
+      copy[key] = config[key];
     } else {
       copy[key] = _wrapStringForJs(config[key]);
     }

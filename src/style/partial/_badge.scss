@@ -1,15 +1,9 @@
-.badge {
+@mixin badge {
   display: inline-block;
   padding: 0.2em 0.6em 0.3em;
-  font-size: 10.5px;
   font-weight: bold;
   line-height: 1em;
   text-align: center;
   vertical-align: baseline;
   border-radius: 0.25em;
-
-  &--warning {
-    color: $color-text-warning;
-    background: $color-background-warning;
-  }
 }

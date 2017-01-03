@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { toggleTodo } from '../duck/todoWidget';
-import TodoList from '../component/TodoList';
+import { toggleTodo, syncTodo } from '../duck/todoWidget';
+import Todos from '../component/Todos';
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
@@ -20,12 +20,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = ({
-  onTodoClick: toggleTodo
+  onTodoClick: toggleTodo,
+  onTodoAdded: todos => syncTodo(todos)
 });
 
-const VisibleTodoList = connect(
+const VisibleTodo = connect(
   mapStateToProps,
   mapDispatchToProps
-)(TodoList);
+)(Todos);
 
-export default VisibleTodoList;
+export default VisibleTodo;

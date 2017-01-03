@@ -1,40 +1,30 @@
 import { List } from 'immutable';
 import fetch from 'isomorphic-fetch';
-
-// Actions
-const ADD_TODO_SYNC_REQUEST = 'ADD_TODO_SYNC_REQUEST';
-const ADD_TODO_SYNC_RESPONSE = 'ADD_TODO_SYNC_RESPONSE';
-const TOGGLE_TODO = 'TOGGLE_TODO';
+import { addHistoryTag } from './historyTagWidget';
+import { ADD_TODO_SYNC_REQUEST, ADD_TODO_SYNC_RESPONSE, TOGGLE_TODO } from './action';
 
 // Reducer
-const todo = (state, action) => {
-  switch (action.type) {
-    case ADD_TODO_SYNC_RESPONSE:
-      return {
-        id: action.id,
-        text: action.text,
-        completed: false
-      };
-    case TOGGLE_TODO:
-      if (state.id !== action.id) {
-        return state;
-      }
-      return {
-        ...state,
-        completed: !state.completed
-      };
-    default:
-      return state;
-  }
-};
 export default function todos(state = List(), action) {
   switch (action.type) {
+    case ADD_TODO_SYNC_REQUEST:
+      return state.push({
+        id: state.isEmpty() ? 0 : state.size,
+        text: action.text,
+        sync: false,
+        completed: false
+      });
     case ADD_TODO_SYNC_RESPONSE:
-      return state.push(todo(undefined, action));
-    case TOGGLE_TODO:
-      return state.map(t =>
-        todo(t, action)
-      );
+      return state.set(action.id, {
+        ...state.get(action.id),
+        sync: true
+      });
+    case TOGGLE_TODO: {
+      const todo = state.get(action.id);
+      return state.set(action.id, {
+        ...todo,
+        completed: !todo.completed
+      });
+    }
     default:
       return state;
   }
@@ -46,38 +36,37 @@ export const toggleTodo = id => ({
   id
 });
 
-const addTodoRequest = (id, text) => ({
+export const addTodoRequest = text => ({
   type: ADD_TODO_SYNC_REQUEST,
-  id,
   text
 });
 
-const addTodoSyncResponse = ({ id, permanentId, text }) => ({
+const addTodoSyncResponse = ({ id, permanentId }) => ({
   type: ADD_TODO_SYNC_RESPONSE,
   id,
-  permanentId,
-  text
+  permanentId
 });
 
-export const addTodoSync = (lastTodoId, text) => (
-  (dispatch) => {
-    const id = lastTodoId + 1;
-    dispatch(addTodoRequest(id, text));
-
+export const syncTodo = currentTodos => (
+  dispatch => Promise.all(currentTodos.map((todo) => {
+    if (todo.sync) {
+      return Promise.resolve();
+    }
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
-
     return fetch(`${config.api.main}/add_todo`, { // eslint-disable-line no-undef
       method: 'POST',
       headers,
       body: JSON.stringify({
-        id,
-        text
+        ...todo
       })
-    }).then(response => response.json())
-      .then(json =>
-        dispatch(addTodoSyncResponse(json))
-      );
-  }
+    }).then(response => response.json().then((json) => {
+      if (!response.ok) {
+        return Promise.reject(json);
+      }
+      dispatch(addHistoryTag(json.words));
+      return dispatch(addTodoSyncResponse(json));
+    }));
+  }))
 );

@@ -1,0 +1,8 @@
+.c-tag {
+  @include badge;
+
+  font-size: 1.6rem;
+  margin: 0 5px;
+  color: $color-text-badge;
+  background-color: $color-background-badge;
+}

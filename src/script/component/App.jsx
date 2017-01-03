@@ -1,13 +1,15 @@
 import React from 'react';
 import FilterLinks from './FilterLinks';
 import AddTodo from '../container/AddTodo';
-import VisibleTodoList from '../container/VisibleTodoList';
+import VisibleTodo from '../container/VisibleTodo';
+import HistoryTag from '../container/HistoryTag';
 
 const App = () => (
   <div>
     <AddTodo />
+    <HistoryTag />
     <FilterLinks />
-    <VisibleTodoList />
+    <VisibleTodo />
   </div>
 );
 

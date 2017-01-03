@@ -14,16 +14,16 @@ const HistoryTag = ({ historyTag, onTagClick }) => (<div className="c-historyTag
 </div>);
 
 const mapStateToProps = state => ({
-  historyTag: state.historyTag
+  historyTag: state.historyTag,
 });
 
 const mapDispatchToProps = ({
-  onTagClick: selectHisotryTag
+  onTagClick: selectHisotryTag,
 });
 
 HistoryTag.propTypes = {
   historyTag: ImmutablePropTypes.isRequired,
-  onTagClick: React.PropTypes.func.isRequired
+  onTagClick: React.PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HistoryTag);

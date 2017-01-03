@@ -10,16 +10,16 @@ const Ping = ({ isPinging, ping }) => (
 );
 
 const mapStateToProps = state => ({
-  isPinging: state.isPinging
+  isPinging: state.isPinging,
 });
 
 const mapDispatchToProps = ({
-  ping: requestPing
+  ping: requestPing,
 });
 
 Ping.propTypes = {
   isPinging: React.PropTypes.boolean.isRequired,
-  ping: React.PropTypes.func.isRequired
+  ping: React.PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ping);

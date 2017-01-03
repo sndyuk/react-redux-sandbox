@@ -19,8 +19,8 @@ Todo.propTypes = {
   todo: PropTypes.shape({
     id: PropTypes.number.isRequired,
     completed: PropTypes.bool.isRequired,
-    text: PropTypes.string.isRequired
-  }).isRequired
+    text: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Todo;

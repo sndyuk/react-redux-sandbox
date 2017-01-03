@@ -19,7 +19,7 @@ import '../style/app.scss';
 
 const preloadedState = State(window.preloadedState);
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line no-underscore-dangle, max-len, space-infix-ops
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const epicMiddleware = createEpicMiddleware(pingEpic);
 
@@ -29,13 +29,16 @@ const store = createStore(
     visibilityFilter,
     historyTag,
     isPinging,
-    routing: routerReducer
+    routing: routerReducer,
   }),
   preloadedState,
-  composeEnhancers(applyMiddleware(
-    epicMiddleware,
-    routerMiddleware(browserHistory),
-    thunkMiddleware))
+  composeEnhancers(
+    applyMiddleware(
+      epicMiddleware,
+      routerMiddleware(browserHistory),
+      thunkMiddleware,
+    ),
+  ),
 );
 
 const history = syncHistoryWithStore(browserHistory, store);
@@ -50,5 +53,5 @@ render(
       <Route path="/" component={App} />
     </Router>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

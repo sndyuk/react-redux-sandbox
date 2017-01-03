@@ -11,18 +11,18 @@ export default function todos(state = List(), action) {
         id: state.isEmpty() ? 0 : state.size,
         text: action.text,
         sync: false,
-        completed: false
+        completed: false,
       });
     case ADD_TODO_SYNC_RESPONSE:
       return state.set(action.id, {
         ...state.get(action.id),
-        sync: true
+        sync: true,
       });
     case TOGGLE_TODO: {
       const todo = state.get(action.id);
       return state.set(action.id, {
         ...todo,
-        completed: !todo.completed
+        completed: !todo.completed,
       });
     }
     default:
@@ -33,18 +33,18 @@ export default function todos(state = List(), action) {
 // Action creators
 export const toggleTodo = id => ({
   type: TOGGLE_TODO,
-  id
+  id,
 });
 
 export const addTodoRequest = text => ({
   type: ADD_TODO_SYNC_REQUEST,
-  text
+  text,
 });
 
 const addTodoSyncResponse = ({ id, permanentId }) => ({
   type: ADD_TODO_SYNC_RESPONSE,
   id,
-  permanentId
+  permanentId,
 });
 
 export const syncTodo = currentTodos => (
@@ -53,14 +53,14 @@ export const syncTodo = currentTodos => (
       return Promise.resolve();
     }
     const headers = new Headers({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
-    return fetch(`${config.api.main}/add_todo`, { // eslint-disable-line no-undef
+    return fetch(`${CONFIG.api.main}/add_todo`, { // eslint-disable-line no-undef
       method: 'POST',
       headers,
       body: JSON.stringify({
-        ...todo
-      })
+        ...todo,
+      }),
     }).then(response => response.json().then((json) => {
       if (!response.ok) {
         return Promise.reject(json);

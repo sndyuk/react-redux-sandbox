@@ -1,7 +1,10 @@
 {
   "parser": "babel-eslint",
+  "globals": {
+    "CONFIG": true
+  },
   "rules": {
-    "comma-dangle": ["error", "never"]
+    "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] }]
   },
   "env": {
     "es6": true,

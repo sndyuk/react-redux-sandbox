@@ -7,7 +7,7 @@ export const Todo = (id, text, detail, sync, lastSyncRequestTime, completed) => 
   text,
   detail,
   sync,
-  completed
+  completed,
 });
 
 const State = ({
@@ -19,7 +19,7 @@ const State = ({
     todos: List(todos),
     visibilityFilter,
     historyTag: List(historyTag),
-    isPinging
+    isPinging,
   });
 
 export default State;

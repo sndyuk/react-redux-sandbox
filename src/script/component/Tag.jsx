@@ -11,7 +11,7 @@ const Tag = ({ onClick, label }) => (
 
 Tag.propTypes = {
   onClick: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
 };
 
 export default Tag;

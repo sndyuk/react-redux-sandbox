@@ -8,7 +8,7 @@ export default function historyTag(state = List(), action) {
       return state.filter(v => v !== action.tag);
     case ADD_HISTORY_TAG:
       return state.concat(action.tags).takeLast(
-        config.history.max // eslint-disable-line no-undef
+        CONFIG.history.max,
       ).toSet().toList();
     default:
       return state;
@@ -18,10 +18,10 @@ export default function historyTag(state = List(), action) {
 // Action creators
 export const selectHisotryTag = tag => ({
   type: SELECT_HISTORY_TAG,
-  tag
+  tag,
 });
 
 export const addHistoryTag = tags => ({
   type: ADD_HISTORY_TAG,
-  tags
+  tags,
 });

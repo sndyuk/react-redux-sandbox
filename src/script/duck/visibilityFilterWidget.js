@@ -14,5 +14,5 @@ export default function visibilityFilter(state = SHOW_ALL, action) {
 // Action creators
 export const setVisibilityFilter = filter => ({
   type: SET_VISIBILITY_FILTER,
-  filter
+  filter,
 });

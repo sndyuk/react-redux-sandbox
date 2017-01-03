@@ -7,13 +7,13 @@ export default class Todos extends React.Component {
   static propTypes = {
     todos: ImmutablePropTypes.isRequired,
     onTodoClick: PropTypes.func.isRequired,
-    onTodoAdded: PropTypes.func.isRequired
+    onTodoAdded: PropTypes.func.isRequired,
   }
 
   componentDidUpdate() {
     const {
       todos,
-      onTodoAdded
+      onTodoAdded,
     } = this.props;
     onTodoAdded(todos);
   }
@@ -21,7 +21,7 @@ export default class Todos extends React.Component {
   render() {
     const {
       todos,
-      onTodoClick
+      onTodoClick,
     } = this.props;
     return (<div className="c-todoList">
       {

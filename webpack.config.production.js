@@ -9,7 +9,7 @@ pack.plugins.push(new LicenseWebpackPlugin({ pattern: /^(MIT|ISC|BSD.*)$/ }));
 pack.plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true, compress: true, comments: false }));
 pack.plugins.push(new webpack.optimize.AggressiveMergingPlugin());
 pack.plugins.push(new Visualizer({
-  filename: './../webpack-stats.html'
+  filename: './webpack-stats.html'
 }));
 pack.plugins.push(new CompressionPlugin({
   asset: '[path]',

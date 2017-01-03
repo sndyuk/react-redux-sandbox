@@ -3,6 +3,7 @@ import FilterLinks from './FilterLinks';
 import AddTodo from '../container/AddTodo';
 import VisibleTodo from '../container/VisibleTodo';
 import HistoryTag from '../container/HistoryTag';
+import Ping from '../container/Ping';
 
 const App = () => (
   <div>
@@ -10,6 +11,7 @@ const App = () => (
     <HistoryTag />
     <FilterLinks />
     <VisibleTodo />
+    <Ping />
   </div>
 );
 

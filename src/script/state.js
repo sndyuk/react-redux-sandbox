@@ -10,10 +10,16 @@ export const Todo = (id, text, detail, sync, lastSyncRequestTime, completed) => 
   completed
 });
 
-const State = ({ todos = [], visibilityFilter = SHOW_ALL, historyTag = [] }) => ({
-  todos: List(todos),
-  visibilityFilter,
-  historyTag: List(historyTag)
-});
+const State = ({
+  todos = [],
+  visibilityFilter = SHOW_ALL,
+  historyTag = [],
+  isPinging = false }) => (
+  {
+    todos: List(todos),
+    visibilityFilter,
+    historyTag: List(historyTag),
+    isPinging
+  });
 
 export default State;

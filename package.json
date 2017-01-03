@@ -30,6 +30,8 @@
     "redux": "*",
     "redux-actions": "*",
     "redux-thunk": "*",
+    "redux-observable": "*",
+    "rxjs": "*",
     "kuromoji": "*"
   },
   "devDependencies": {

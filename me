@@ -66,14 +66,14 @@ const commands = {
   },
   webpack: (args = [], sync = true) => {
     if (sync) {
-      require('child_process').execFileSync('./node_modules/webpack/bin/webpack.js', args, {stdio: 'inherit'});
+      require('child_process').execSync(['node', './node_modules/webpack/bin/webpack.js'].concat(args).join(' '), {stdio: 'inherit'});
     } else {
       run_as_myself('./node_modules/webpack/bin/webpack.js', args);
     }
   },
   gulp: (args = [], sync = true) => {
     if (sync) {
-      require('child_process').execFileSync('./node_modules/gulp/bin/gulp.js', args, {stdio: 'inherit'});
+      require('child_process').execSync(['node', './node_modules/gulp/bin/gulp.js'].concat(args).join(' '), {stdio: 'inherit'});
     } else {
       run_as_myself('./node_modules/gulp/bin/gulp', args);
     } 

@@ -27,7 +27,7 @@ const pack = {
       {
         enforce: 'pre',
         test: /\.js(x?)$/,
-        include: /src\/script/,
+        include: path.resolve(__dirname, 'src/script'),
         loader: 'eslint-loader',
         options: {
           fix: false, // Don't set true. I will broke your source code!
@@ -36,12 +36,12 @@ const pack = {
       },
       {
         test: /\.js(x?)$/,
-        include: /src\/script/,
+        include: path.resolve(__dirname, 'src/script'),
         loader: 'babel-loader?presets[]=es2015&presets[]=react&presets[]=stage-0&presets[]=react-optimize'
       },
       {
         test: /\.scss$/,
-        include: /src\/style/,
+        include: path.resolve(__dirname, 'src/style'),
         loader: ExtractTextPlugin.extract({ loader: 'css-loader?sourceMap!postcss-loader!sass-loader?sourceMap' })
       },
       {

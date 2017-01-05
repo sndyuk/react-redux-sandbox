@@ -53,7 +53,8 @@ const pack = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': { 'NODE_ENV': JSON.stringify(process.env.NODE_ENV) },
-      'CONFIG': config.wrapStringForJs()
+      'CONFIG': config.wrapStringForJs(),
+      'DEBUG': process.env.NODE_ENV !== 'production'
     }),
     new StyleLintPlugin({
       configFile: path.resolve(__dirname, 'stylelint.js'),

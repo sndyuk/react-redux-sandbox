@@ -1,7 +1,8 @@
 {
   "parser": "babel-eslint",
   "globals": {
-    "CONFIG": true
+    "CONFIG": true,
+    "DEBUG": true
   },
   "rules": {
     "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] }]

@@ -43,9 +43,11 @@ const store = createStore(
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-history.listen((location) => {
-  console.log(`DEBUG: Navigate to ${location}`);
-});
+if (DEBUG) {
+  history.listen((location) => {
+    console.log(`DEBUG: Navigate to ${location}`);
+  });
+}
 
 render(
   <Provider store={store}>
